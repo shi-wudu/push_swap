@@ -17,19 +17,28 @@ void	push(t_swap **skyscraper, t_swap **sky_b, char *str)
 	if(!ft_strncmp("pa", str, 3))
 	{
 		rpush(skyscraper, sky_b);
-	if ((*skyscraper)->maxval < (*skyscraper)->value)
-		(*skyscraper)->maxval = (*skyscraper)->value;
-	if ((*skyscraper)->minval > (*skyscraper)->value)
-		(*skyscraper)->minval = (*skyscraper)->value;
+	if ((*skyscraper)->maxval == (*skyscraper)->value)
+		(*skyscraper)->maxval = getmaxval(*skyscraper);
+	if ((*skyscraper)->minval == (*skyscraper)->value)
+		(*skyscraper)->minval = getminval(*skyscraper);
+	if ((*skyscraper)->value > (*sky_b)->maxval)
+		(*sky_b)->maxval = (*skyscraper)->value;
+	if ((*skyscraper)->value < (*sky_b)->minval)
+		(*sky_b)->minval = (*skyscraper)->value;
+
 		write (1, "pa\n", 3);
 	}
 	if(!ft_strncmp("pb", str, 3))
 	{
 		rpush(sky_b, skyscraper);
-	if ((*sky_b)->maxval < (*sky_b)->value)
-		(*sky_b)->maxval = (*sky_b)->value;
-	if ((*sky_b)->minval > (*sky_b)->value)
-		(*sky_b)->minval = (*sky_b)->value;
+	if ((*sky_b)->maxval == (*sky_b)->value)
+		(*sky_b)->maxval = getmaxval(*sky_b);
+	if ((*sky_b)->minval == (*sky_b)->value)
+		(*sky_b)->minval = getminval(*sky_b);
+	if ((*sky_b)->value > (*skyscraper)->maxval)
+		(*skyscraper)->maxval = (*sky_b)->value;
+	if ((*sky_b)->value < (*skyscraper)->minval)
+		(*skyscraper)->minval = (*sky_b)->value;
 		write (1, "pb\n", 3);
 	}
 }

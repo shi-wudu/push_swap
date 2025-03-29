@@ -28,9 +28,54 @@ int	validate(char **av)
 	return(1);
 }
 
-void free_array(char **av)
+static t_swap	*lstlast(t_swap *lst)
 {
-	while (*av)
-		free(*av++);
-	free (av);
+	t_swap	*tmp;
+
+	if (!lst)
+		return (NULL);
+	tmp = lst;
+	while (tmp->next)
+		tmp = tmp->next;
+	return (tmp);
+}
+
+void	lstaddtail(t_swap **lst, t_swap *new)
+{
+	t_swap	*last;
+
+	if (lst)
+	{
+		if (*lst)
+		{
+			last = lstlast(*lst);
+			last->next = new;
+			new->prev = last;
+		}
+		else
+			*lst = new;
+	}
+}
+
+t_swap	*lstnew(int value)
+{
+	t_swap	*node;
+
+	node = malloc(sizeof(t_swap));
+	if (!node)
+		return (0);
+	node->value = value;
+	node->next = NULL;
+	node->prev = NULL;
+	node->index = 0;
+	return (node);
+}
+
+void freestack(t_swap *sky)
+{
+	if (sky)
+	{
+		freestack(sky->next);
+		free(sky);
+	}
 }

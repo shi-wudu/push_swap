@@ -17,10 +17,7 @@ int		sortcheck(t_swap *skyscraper)
 	while (skyscraper && skyscraper->next)
 	{
 		if (skyscraper->value > skyscraper->next->value)
-		{
-			printf("meow\n");
-			return(0);
-		}
+			return (0);
 		skyscraper = skyscraper->next;
 	}
 	return (1);
@@ -54,7 +51,17 @@ int		getsizeof(t_swap *skyscraper)
 	}
 	return (size);
 }
-//-----
 
-//update value add to
-//     
+int		getminval(t_swap *skyscraper)
+{
+	int		minval;
+
+	minval = skyscraper->value;
+	while(skyscraper)
+	{
+		if (skyscraper->value < minval)
+			minval = skyscraper->value;
+		skyscraper = skyscraper->next;
+	}
+	return (minval);
+}

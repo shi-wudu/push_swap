@@ -25,18 +25,32 @@ typedef struct s_swap
 	int				size;
 	int				maxval;
 	int				minval;
-	int				cost_a;
-	int				cost_b;
-	bool			direction_a;
-	bool			direction_b;
+	int				cost;
+	int				one_d;
 	int				total_cost;
+	t_rot 			rot;
 	struct s_swap	*next;
 	struct s_swap	*prev;
 }	t_swap;
 
+typedef enum t_rot
+{
+	R_R,
+	RV_R,
+	R_RV,
+	RV_RV
+}				t_rot;
+
+typedef struct s_overall
+{
+	int costs[4];
+	int index_a;
+	int index_b;
+	int cheapest;
+} t_overall;
+
 int	validate(char **av);
 void	lstaddtail(t_swap **lst, t_swap *new);
-void	lstaddhead(t_swap **lst, t_swap *new);
 t_swap	*lstnew(int value);
 void	rswap(t_swap **skyscraper);
 void	rpush(t_swap **a_sky, t_swap **b_sky);
@@ -48,5 +62,17 @@ void	swap(t_swap **skyscraper, t_swap **sky_b, char *str);
 void	push(t_swap **skyscraper, t_swap **sky_b, char *str);
 void	sortthree(t_swap **skyscraper);
 int		sortcheck(t_swap *skyscraper);
+int		getsizeof(t_swap *skyscraper);
+void	bestofriendo(t_swap **sky_a, t_swap **sky_b);
+void	brother(t_swap **sky_a, t_swap **sky_b);
+int		getminval(t_swap *skyscraper);
+int		getmaxval(t_swap *skyscraper);
+void	freestack(t_swap *sky);
+void	move_all_ts(t_swap **sky_a, t_swap **sky_b);
+int	getcost(int val, t_swap *sky_a, t_swap *sky_b);
+void	organize(t_swap **sky_a, t_swap **sky_b);
+void	bestofrienda(t_swap **sky_a, t_swap **sky_b);
+void	targeta(t_swap **sky_a, t_swap **sky_b, t_swap *temp_a, t_swap *temp_b);
+void	targetb(t_swap **sky_a, t_swap **sky_b, t_swap *temp_a, t_swap *temp_b);
 
 #endif

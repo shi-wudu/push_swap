@@ -43,38 +43,25 @@ t_swap	*cstack(char **av)
 #include "stdio.h"
 int	main(int ac, char **av)
 {
-	t_swap	*skyscraper;
-	t_swap	*sky_b;
-	t_swap	*temp;
-	t_swap	*temp2;
+	t_swap *sky_a;
+	t_swap *sky_b;
 
-	sky_b = NULL;
-	skyscraper = NULL;
 	if (ac == 1 || !(validate(av)))
 		return(0);
-	skyscraper = cstack(av);
-	if (!skyscraper)
-		return(1);
-	temp = skyscraper;
-	while (temp)
+	sky_a = cstack(av);
+	sky_b = 0;
+	if (!sortcheck(sky_a))
 	{
-		temp2 = temp->next;
-		while(temp2)
+		if (getsizeof(sky_a) == 2)
 		{
-			if (temp->value == temp2->value)
-				return (1);
-			temp2 = temp2->next;
+			swap(&sky_a, &sky_b, "sa");
+			return (0);
 		}
-		temp = temp->next;
+		else
+			organize(&sky_a, &sky_b);
 	}
-	sortthree((&skyscraper));
-	temp = skyscraper;
-	while(temp)
-	{
-		printf("Value -- %d\n", temp->value);
-		temp = temp->next;
-	}
-
+	freestack(sky_a);
+	return (0);
 }
 
 //cc main.c lists.c sort.c lifejacket.c ./Libft/ft_strlen.c ./Libft/ft_itoa.c ./Libft/ft_atoi.c ./Libft/ft_strncmp.c ./Libft/ft_strdup.c ./Libft/ft_memcpy.c && ./a.out 1 2 3 4 5

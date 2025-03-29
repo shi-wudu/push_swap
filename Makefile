@@ -1,4 +1,4 @@
-SRCS			=	
+SRCS			=	main.c lifejacket.c movelike.c jegger.c organize.c family.c allts.C
 
 NAME			=	push_swap.a
 
