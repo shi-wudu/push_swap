@@ -15,15 +15,16 @@
 void	organize(t_swap **sky_a, t_swap **sky_b)
 {
 	(*sky_a)->minval = getminval(*sky_a);
-	(*sky_b)->minval = getminval(*sky_b);
 	(*sky_a)->maxval = getmaxval(*sky_a);
-	(*sky_b)->maxval = getmaxval(*sky_b);
+	if ((*sky_a)->size > 3)
+		push(sky_a, sky_b, "pb");
 	while ((*sky_a)->size > 3 )
 	{
 		bestofriendo(sky_a, sky_b);
 		move_all_ts(sky_a, sky_b);
 		push(sky_a, sky_b, "pb");
 	}
+	sortthree(sky_a);
 	while ((*sky_b))
 	{
 		bestofrienda(sky_b, sky_a);
@@ -32,9 +33,10 @@ void	organize(t_swap **sky_a, t_swap **sky_b)
 	}
 }
 
-static t_list	*move_to_maxval(t_swap **sky_b)
+t_swap	*move_to_maxval(t_swap **sky_b)
 {
 	t_swap *temp_b = *sky_b;
+	printf("maxval = %d\n", temp_b->maxval);
 
 	while (temp_b->value != temp_b->maxval)
 	{
@@ -44,7 +46,7 @@ static t_list	*move_to_maxval(t_swap **sky_b)
 	return (temp_b);
 }
 
-static t_list	*move_to_minval(t_swap **sky_a)
+t_swap	*move_to_minval(t_swap **sky_a)
 {
 	t_swap *temp_a = *sky_a;
 
@@ -56,25 +58,6 @@ static t_list	*move_to_minval(t_swap **sky_a)
 	return (temp_a);
 }
 
-
-int	getcost(int val, t_swap *sky_a, t_swap *sky_b)
-{
-	int	index;
-	t_swap *tmp;
-
-	tmp = sky_a;
-	index = 0;
-	while (sky_a && (val != sky_a->maxval)) // index do max val
-	{
-		sky_a = sky_a->next;
-		index++;
-	}
-	while (sky_a->value > val) // tentar encontrar o menor mais proximo antes de acabar a stack a partir do max
-	{
-		sky_a = sky_a->next;
-		index++;
-	}
-}
 void	brother(t_swap **sky_a, t_swap **sky_b)
 {
 	(*sky_b)->one_d = R_R;

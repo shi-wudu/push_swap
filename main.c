@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "stdio.h"
 #include "push_swap.h"
 
 t_swap	*cstack(char **av)
@@ -20,9 +21,7 @@ t_swap	*cstack(char **av)
 	
 	size = 0;
 	skyscraper = NULL;
-	*av++;
-	skyscraper->maxval = ft_atoi(av[1]);
-	skyscraper->minval = ft_atoi(av[1]);
+	av++;
 	while(*av)
 	{
 		temp = lstnew(ft_atoi(*av)); //criar novo node cujo valor é o int da str
@@ -33,14 +32,23 @@ t_swap	*cstack(char **av)
 			skyscraper->maxval = skyscraper->value;
 		if (skyscraper->minval > skyscraper->value)
 			skyscraper->minval = skyscraper->value;
-		*av++;
+		av++;
 		size++;
 	}
 	if (skyscraper)
 		skyscraper->size = size;
 	return(skyscraper);
 }
-#include "stdio.h"
+void print_stack(t_swap *stack) {
+	int i = 0;
+	while (stack)
+	{
+		printf("stack[%d] = %d\n", i, stack->value);
+		i++;
+		stack = stack->next;
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_swap *sky_a;
@@ -49,7 +57,8 @@ int	main(int ac, char **av)
 	if (ac == 1 || !(validate(av)))
 		return(0);
 	sky_a = cstack(av);
-	sky_b = 0;
+	sky_b = NULL;
+	print_stack(sky_a);
 	if (!sortcheck(sky_a))
 	{
 		if (getsizeof(sky_a) == 2)
@@ -60,6 +69,7 @@ int	main(int ac, char **av)
 		else
 			organize(&sky_a, &sky_b);
 	}
+	print_stack(sky_a);
 	freestack(sky_a);
 	return (0);
 }

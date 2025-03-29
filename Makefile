@@ -1,22 +1,19 @@
-SRCS			=	main.c lifejacket.c movelike.c jegger.c organize.c family.c allts.C
+SRCS			=	main.c lifejacket.c movelike.c jagger.c organize.c family.c allts.c sup.c
+NAME			=	push_swap
 
-NAME			=	push_swap.a
-
-OBJS			=	$(SRCS:.c=.o)
+OBJS			=	$(SRCS:%.c=%.o)
 
 CC				=	cc
 
-CFLAGS			= -Wall -Wextra -Werror
+CFLAGS			= -Wall -Wextra -Werror -g -fsanitize=address
 
 LIBFT_PATH		= ./Libft
 
 LIBFT			= $(LIBFT_PATH)/libft.a
 
-OBJS			= $(SRC:.c=.o)
-
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
+$(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
 $(LIBFT):

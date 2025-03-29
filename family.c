@@ -18,6 +18,7 @@ void	bestofriendo(t_swap **sky_a, t_swap **sky_b)
 	t_swap *temp_b;
 
 	temp_a = *sky_a;
+	temp_b = *sky_b;
 	while (temp_a)
 	{
 		targetb(sky_a, sky_b, temp_a, temp_b);
@@ -31,6 +32,7 @@ void	bestofrienda(t_swap **sky_a, t_swap **sky_b)
 	t_swap *temp_b;
 
 	temp_b = *sky_b;
+	temp_a = *sky_a;
 	while (temp_b)
 	{
 		targetb(sky_a, sky_b, temp_a, temp_b);

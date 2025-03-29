@@ -36,6 +36,9 @@ void	rpush(t_swap **a_sky, t_swap **b_sky)
 {
 	t_swap *temp;
 
+	if (!b_sky)
+		printf("no b sky\n");
+
 	if (!(a_sky && *a_sky))
 		return ;
 	temp = *a_sky;
@@ -43,6 +46,9 @@ void	rpush(t_swap **a_sky, t_swap **b_sky)
 	if (!(b_sky && *b_sky))
 	{
 		*b_sky = temp;
+		printf("val = %d\n", temp->value);
+		(*b_sky)->maxval = temp->value;
+		(*b_sky)->minval = temp->value;
 		(*b_sky)->next = NULL;
 		(*b_sky)->size = 1;
 		(*a_sky)->size--;

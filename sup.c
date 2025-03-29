@@ -37,14 +37,14 @@ void	sortthree(t_swap **skyscraper)
 
 int		getsizeof(t_swap *skyscraper)
 {
-	t_list	*tmp;
+	t_swap	*tmp;
 	int		size;
 
 	size = 0;
 	if (!skyscraper)
-		return (NULL);
+		return (0);
 	tmp = skyscraper;
-	while (tmp->next)
+	while (tmp)
 	{
 		tmp = tmp->next;
 		size++;
@@ -56,7 +56,7 @@ int		getminval(t_swap *skyscraper)
 {
 	int		minval;
 
-	minval = skyscraper->value;
+	minval = -2147483648;
 	while(skyscraper)
 	{
 		if (skyscraper->value < minval)

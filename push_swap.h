@@ -28,7 +28,6 @@ typedef struct s_swap
 	int				cost;
 	int				one_d;
 	int				total_cost;
-	t_rot 			rot;
 	struct s_swap	*next;
 	struct s_swap	*prev;
 }	t_swap;
@@ -69,10 +68,11 @@ int		getminval(t_swap *skyscraper);
 int		getmaxval(t_swap *skyscraper);
 void	freestack(t_swap *sky);
 void	move_all_ts(t_swap **sky_a, t_swap **sky_b);
-int	getcost(int val, t_swap *sky_a, t_swap *sky_b);
 void	organize(t_swap **sky_a, t_swap **sky_b);
 void	bestofrienda(t_swap **sky_a, t_swap **sky_b);
 void	targeta(t_swap **sky_a, t_swap **sky_b, t_swap *temp_a, t_swap *temp_b);
 void	targetb(t_swap **sky_a, t_swap **sky_b, t_swap *temp_a, t_swap *temp_b);
+t_swap	*move_to_maxval(t_swap **sky_b);
+t_swap	*move_to_minval(t_swap **sky_a);
 
 #endif
