@@ -36,7 +36,10 @@ t_swap	*create_stack_from_args(char **av)
 	{
 		temp = create_new_node(ft_atoi(*av));
 		if (!temp)
-			return (NULL);
+			return (free_stack(stack_a), NULL);
+		if (no_duplicates(stack_a, temp->value))
+			return (write(2, "Error\n", 6), free_stack(stack_a), \
+free(temp), NULL);
 		add_node_to_tail(&stack_a, temp);
 		av++;
 		size++;
@@ -50,7 +53,10 @@ int	main(int ac, char **av)
 	t_swap	*stack_b;
 
 	if (ac == 1 || !(validate_arguments(av)))
+	{
+		write(2, "Error\n", 6);
 		return (0);
+	}
 	stack_a = create_stack_from_args(av);
 	stack_b = NULL;
 	if (!is_stack_sorted(stack_a))

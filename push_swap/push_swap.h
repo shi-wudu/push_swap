@@ -161,5 +161,7 @@ char	*ft_strdup(const char *s1);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_atoi(const char *str);
 char	*ft_itoa(int n);
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
+int		no_duplicates(t_swap *stack, int value);
 
 #endif
