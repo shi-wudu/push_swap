@@ -6,7 +6,7 @@
 /*   By: marleand <marleand@student42.lisboa.pt>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 17:15:41 by marleand          #+#    #+#             */
-/*   Updated: 2025/09/03 16:39:35 by marleand         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:17:23 by marleand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ int	validate_arguments(char **av)
 	i = 1;
 	while (av[i])
 	{
+		if ((av[i][0] == '\'' && av[i][1] == '\0') || av[i][0] == '\0')
+			return (0);
+		if ((av[i][0] == '\'' && av[i][1] != '\0') || av[i][0] == '\0')
+			return (0);
 		tmp = ft_itoa(ft_atoi(av[i]));
 		if (ft_strncmp(tmp, av[i], ft_strlen(av[i])))
 			return (free(tmp), 0);
